@@ -243,10 +243,40 @@ st.markdown(f"""
 
 # ────── LOGIN SCREEN ──────
 if not st.session_state.get('authentication_status', False):
-    st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.markdown('<h1 class="glow" style="color:#00aaff;">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 style="color:#ffcc00; text-align:center;">IPK NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
-    st.markdown('<p style="text-align:center; color:#ffffff;">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
+    st.markdown(f"""
+    <style>
+        .stApp {{
+            background-image: url("{BACKGROUND_IMAGE}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+        .login-box {{
+            background: rgba(0, 0, 0, 0.75);  /* Dark box behind text only */
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px auto;
+            max-width: 550px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 170, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }}
+        .glow-title {{
+            text-shadow: 0 0 18px #00aaff, 0 0 35px #00aaff;
+        }}
+        .subtitle {{
+            color: #ffcc00;
+            font-weight: bold;
+        }}
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<div class="login-box">', unsafe_allow_html=True)
+    st.markdown('<h1 class="glow-title" style="color:#00aaff;">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
+    st.markdown('<h3 class="subtitle">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
+    st.markdown('<p style="color:#e0e0e0;">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
     authenticator.login(
         location='main',
