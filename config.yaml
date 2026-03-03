@@ -1,0 +1,26 @@
+credentials:
+  usernames:
+    admin:
+      email: admin@ipkns.pdrm
+      name: Pentadbir Sistem
+      password: adminstrong2026     # ← Plain text here first
+      roles: [admin]
+    guard1:
+      email: guard1@pdrm.gov.my
+      name: Pengawal Pos 1
+      password: guardpass2026       # ← Plain text here first
+      roles: [guard]
+    guard2:
+      email: guard2@pdrm.gov.my
+      name: Pengawal Pos 2
+      password: pdrm2026
+      roles: [guard]
+
+cookie:
+  expiry_days: 30
+  key: super_secret_random_key_change_this_very_long_and_unique_1234567890
+  name: pdrm_frs_cookie
+
+#preauthorized:
+#  emails:
+#    - newguard@pdrm.gov.my        # Optional: allow self-registration
