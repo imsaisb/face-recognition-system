@@ -244,64 +244,11 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ────── LOGIN SCREEN ──────
-# ────── LOGIN SCREEN ──────
 if not st.session_state.get('authentication_status', False):
-    st.markdown(f"""
-    <style>
-        .stApp {{
-            background-image: url("{BACKGROUND_IMAGE}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            position: relative;           /* important for layering */
-        }}
-        .background-overlay {{
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.65);   /* dark dim overlay on image */
-            z-index: 1;                        /* above image, below text */
-        }}
-        .login-content {{
-            position: relative;
-            z-index: 2;                        /* text on top of overlay */
-            background: rgba(0, 0, 0, 0.60);   /* semi-transparent box for text */
-            border-radius: 24px;
-            padding: 45px 35px;
-            margin: 60px auto;
-            max-width: 580px;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 170, 255, 0.4);
-            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.8);
-            text-align: center;
-        }}
-        .glow-title {{
-            text-shadow: 0 0 18px #00aaff, 0 0 35px #00aaff;
-            margin-bottom: 12px;
-        }}
-        .subtitle {{
-            color: #ffcc00;
-            font-weight: bold;
-            font-size: 1.6em;
-            margin: 12px 0 25px 0;
-        }}
-        .description {{
-            color: #f0f0f0;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin: 0 0 35px 0;
-        }}
-    </style>
-    """, unsafe_allow_html=True)
-
-    # Background overlay layer
-    st.markdown('<div class="background-overlay"></div>', unsafe_allow_html=True)
-
-    # Login content on top
-    st.markdown('<div class="login-content">', unsafe_allow_html=True)
+    st.markdown('<div class="login-box">', unsafe_allow_html=True)
     
     st.markdown('<h1 class="glow-title">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 class="subtitle">IPK NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 class="subtitle">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
     st.markdown('<p class="description">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
     authenticator.login(
@@ -320,7 +267,7 @@ if not st.session_state.get('authentication_status', False):
         st.error('ID Pengguna atau Kata Laluan salah')
     elif st.session_state.get('authentication_status') is None:
         st.warning('Sila masukkan ID Pengguna dan Kata Laluan')
-        
+
 else:
     name = st.session_state.get('name', 'Pengguna')
     username = st.session_state.get('username', 'unknown')
