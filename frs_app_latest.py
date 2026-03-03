@@ -183,7 +183,7 @@ st.markdown(f"""
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(rgba(0, 102, 204, 0.25), rgba(0, 0, 0, 0.65));
+        background: rgba(0, 0, 0, 0.65);
         z-index: -1;
     }}
     .card {{
@@ -243,66 +243,10 @@ st.markdown(f"""
 
 # ────── LOGIN SCREEN ──────
 if not st.session_state.get('authentication_status', False):
-    st.markdown(f"""
-    <style>
-        .stApp {{
-            background-image: url("{BACKGROUND_IMAGE}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }}
-        .login-overlay {{
-            background: rgba(0, 0, 0, 0.75);           /* Darker semi-transparent box */
-            border-radius: 24px;
-            padding: 45px 35px;
-            margin: 50px auto;
-            max-width: 560px;
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(0, 170, 255, 0.4);
-            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.8);
-            text-align: center;
-        }}
-        .glow-title {{
-            text-shadow: 0 0 18px #00aaff, 0 0 35px #00aaff;
-            margin-bottom: 10px;
-            font-size: 2.8em;
-        }}
-        .subtitle {{
-            color: #ffcc00;
-            font-weight: bold;
-            font-size: 1.6em;
-            margin: 12px 0 25px 0;
-        }}
-        .description {{
-            color: #f0f0f0;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin: 0 0 35px 0;
-        }}
-        .stButton>button {{
-            background: linear-gradient(90deg, #0066cc, #0099ff) !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 12px !important;
-            padding: 14px 40px !important;
-            font-size: 1.3em !important;
-            font-weight: bold !important;
-            box-shadow: 0 0 20px rgba(0, 170, 255, 0.6) !important;
-            transition: all 0.3s ease;
-        }}
-        .stButton>button:hover {{
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(0, 170, 255, 0.9) !important;
-        }}
-    </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<div class="login-overlay">', unsafe_allow_html=True)
-    
-    st.markdown('<h1 class="glow-title">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 class="subtitle">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
-    st.markdown('<p class="description">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.markdown('<h1 class="glow" style="color:#00aaff;">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
+    st.markdown('<h3 style="color:#ffcc00; text-align:center;">IPK NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
+    st.markdown('<p style="text-align:center; color:#ffffff;">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
     authenticator.login(
         location='main',
