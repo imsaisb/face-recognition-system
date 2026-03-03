@@ -252,37 +252,55 @@ if not st.session_state.get('authentication_status', False):
             background-repeat: no-repeat;
             background-attachment: fixed;
         }}
-        .login-box {{
-            background: rgba(0, 0, 0, 0.70);           /* Dark semi-transparent box */
-            border-radius: 20px;
-            padding: 40px 30px;
+        .login-overlay {{
+            background: rgba(0, 0, 0, 0.75);           /* Darker semi-transparent box */
+            border-radius: 24px;
+            padding: 45px 35px;
             margin: 50px auto;
-            max-width: 520px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 170, 255, 0.35);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            max-width: 560px;
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(0, 170, 255, 0.4);
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.8);
             text-align: center;
         }}
         .glow-title {{
-            text-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff;
-            margin-bottom: 8px;
+            text-shadow: 0 0 18px #00aaff, 0 0 35px #00aaff;
+            margin-bottom: 10px;
+            font-size: 2.8em;
         }}
         .subtitle {{
             color: #ffcc00;
             font-weight: bold;
-            margin: 10px 0 20px 0;
+            font-size: 1.6em;
+            margin: 12px 0 25px 0;
         }}
         .description {{
-            color: #e0e0e0;
-            margin: 20px 0 30px 0;
+            color: #f0f0f0;
+            font-size: 1.1em;
             line-height: 1.6;
+            margin: 0 0 35px 0;
+        }}
+        .stButton>button {{
+            background: linear-gradient(90deg, #0066cc, #0099ff) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 12px !important;
+            padding: 14px 40px !important;
+            font-size: 1.3em !important;
+            font-weight: bold !important;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.6) !important;
+            transition: all 0.3s ease;
+        }}
+        .stButton>button:hover {{
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 170, 255, 0.9) !important;
         }}
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div class="login-box">', unsafe_allow_html=True)
+    st.markdown('<div class="login-overlay">', unsafe_allow_html=True)
     
-    st.markdown('<h1 class="glow-title" style="color:#00aaff;">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="glow-title">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
     st.markdown('<h3 class="subtitle">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
     st.markdown('<p class="description">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
