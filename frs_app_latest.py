@@ -25,8 +25,8 @@ CONFIDENCE = 0.90
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 # Images (relative paths)
-BACKGROUND_IMAGE = "img/background.jpg"  
-BANNER_IMAGE = "img/logo pdrm.png"           # Yellow-red-blue header with logo & title
+BACKGROUND_IMAGE = "https://raw.githubusercontent.com/imsaisb/face-recognition-system/main/img/background.jpeg"
+BANNER_IMAGE = "https://raw.githubusercontent.com/imsaisb/face-recognition-system/main/img/logo pdrm.jpg"           # Yellow-red-blue header with logo & title
 
 # Load authenticator config
 with open('config.yaml', encoding='utf-8') as file:
@@ -167,7 +167,7 @@ class FaceProcessor(VideoProcessorBase):
 # ────────────────────────────────────────────────
 # APP
 # ────────────────────────────────────────────────
-st.set_page_config(page_title="FACE RECOGNITION SYSTEM – PDRM NEGERI SEMBILAN", layout="wide")
+st.set_page_config(page_title="FACE RECOGNITION SYSTEM – IPK NEGERI SEMBILAN", layout="wide")
 
 # Background + blue digital overlay
 st.markdown(f"""
@@ -245,7 +245,7 @@ st.markdown(f"""
 if not st.session_state.get('authentication_status', False):
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<h1 class="glow" style="color:#00aaff;">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 style="color:#ffcc00; text-align:center;">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 style="color:#ffcc00; text-align:center;">IPK NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
     st.markdown('<p style="text-align:center; color:#ffffff;">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
     authenticator.login(
