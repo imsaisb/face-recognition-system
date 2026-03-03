@@ -7,7 +7,7 @@ credentials:
       roles: [admin]
     guard1:
       email: guard1@pdrm.gov.my
-      name: Pengawal Pos 1
+      name: IPKNS
       password: guardpass2026       # ← Plain text here first
       roles: [guard]
     guard2:

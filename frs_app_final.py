@@ -25,10 +25,10 @@ CONFIDENCE = 0.90
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 # Background image (relative path - copy your file here)
-BACKGROUND_IMAGE = "app_image/background.jpg"  # Your building photo
+BACKGROUND_IMAGE = "img/background.jpg"  
 
 # Banner image (your yellow-red-blue header)
-BANNER_IMAGE = "app_image/banner 2.jpg"  # Save in same folder
+BANNER_IMAGE = "img/banner2.jpg" 
 
 # Load authenticator config
 with open('config.yaml', encoding='utf-8') as file:
@@ -169,7 +169,7 @@ class FaceProcessor(VideoProcessorBase):
 # ────────────────────────────────────────────────
 # APP
 # ────────────────────────────────────────────────
-st.set_page_config(page_title="FACE RECOGNITION SYSTEM – PDRM NEGERI SEMBILAN", layout="wide")
+st.set_page_config(page_title="FACE RECOGNITION SYSTEM – IPK NEGERI SEMBILAN", layout="wide")
 
 # Background with overlay
 st.markdown(f"""
@@ -315,7 +315,8 @@ else:
                 st.rerun()
 
         authenticator.logout('Log Keluar', location='main')
-
+        
+        # UPDATE LETAK ID DAN NAMA
     elif st.session_state.page == 'scan':
         title = "TIME IN (Masuk)" if st.session_state.action_key == "IN" else "TIME OUT (Keluar)"
         st.markdown(f"<h2 style='color:#00aaff; text-align:center;'>{title}</h2>", unsafe_allow_html=True)
