@@ -24,7 +24,7 @@ CONFIDENCE = 0.90
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-# Images (GitHub raw links - make sure they are correct)
+# Images (using your GitHub raw links)
 BACKGROUND_IMAGE = "https://raw.githubusercontent.com/imsaisb/face-recognition-system/main/img/background.jpeg"
 BANNER_IMAGE = "https://raw.githubusercontent.com/imsaisb/face-recognition-system/main/img/logo pdrm.jpg"
 
@@ -183,37 +183,33 @@ st.markdown(f"""
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0, 0, 0, 0.65);  /* Medium-dark overlay to dim background */
-        z-index: 1;
+        background: rgba(0, 0, 0, 0.60);  /* Medium-dark overlay - adjust 0.60 to make darker/lighter */
+        z-index: -1;
     }}
     .login-box {{
-        position: relative;
-        z-index: 2;  /* Text on top of overlay */
-        background: rgba(0, 0, 0, 0.75);  /* Dark box for login content */
-        border-radius: 24px;
-        padding: 45px 35px;
-        margin: 60px auto;
-        max-width: 580px;
+        background: rgba(0, 0, 0, 0.80);  /* Strong dark box for login text */
+        border-radius: 20px;
+        padding: 40px 30px;
+        margin: 50px auto;
+        max-width: 560px;
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(0, 170, 255, 0.4);
-        box-shadow: 0 12px 50px rgba(0, 0, 0, 0.8);
+        border: 1px solid rgba(0, 170, 255, 0.35);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
         text-align: center;
     }}
     .glow-title {{
-        text-shadow: 0 0 18px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 0, 0, 0.6);
-        margin-bottom: 12px;
+        text-shadow: 0 0 18px #00aaff, 0 0 35px #00aaff;
+        margin-bottom: 10px;
     }}
     .subtitle {{
         color: #ffcc00;
         font-weight: bold;
-        font-size: 1.6em;
-        margin: 12px 0 25px 0;
+        margin: 12px 0;
     }}
     .description {{
         color: #f0f0f0;
-        font-size: 1.1em;
+        margin: 20px 0 30px 0;
         line-height: 1.6;
-        margin: 0 0 35px 0;
     }}
     .pass-result {{
         background: #004d00;
@@ -243,20 +239,16 @@ st.markdown(f"""
         font-weight: bold !important;
         box-shadow: 0 0 20px rgba(0, 170, 255, 0.6) !important;
     }}
-    h1, h2, h3 {{ color: #000000 !important; text-align: center; }}  /* All main titles black */
+    h1, h2, h3 {{ color: #000000; text-align: center; }}  /* ← Changed to black as requested */
 </style>
 """, unsafe_allow_html=True)
 
 # ────── LOGIN SCREEN ──────
 if not st.session_state.get('authentication_status', False):
-    # Dark overlay layer (dims the background)
-    st.markdown('<div class="background-overlay"></div>', unsafe_allow_html=True)
-
-    # Login content on top of overlay
     st.markdown('<div class="login-box">', unsafe_allow_html=True)
     
     st.markdown('<h1 class="glow-title">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 class="subtitle">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 class="subtitle">IPK NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
     st.markdown('<p class="description">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
     authenticator.login(
