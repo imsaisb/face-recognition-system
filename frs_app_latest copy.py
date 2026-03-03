@@ -243,48 +243,10 @@ st.markdown(f"""
 
 # ────── LOGIN SCREEN ──────
 if not st.session_state.get('authentication_status', False):
-    # Background image full-screen
-    st.markdown(f"""
-    <style>
-        .stApp {{
-            background-image: url("{BACKGROUND_IMAGE}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }}
-        .login-overlay {{
-            background: rgba(0, 0, 0, 0.65);  /* Dark semi-transparent box */
-            border-radius: 20px;
-            padding: 40px 30px;
-            margin: 60px auto;
-            max-width: 500px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 170, 255, 0.4);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            text-align: center;
-        }}
-        .glow {{
-            text-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff;
-        }}
-        .subtitle {{
-            color: #ffcc00;
-            font-weight: bold;
-            margin: 10px 0;
-        }}
-        .description {{
-            color: #e0e0e0;
-            margin: 20px 0;
-            line-height: 1.5;
-        }}
-    </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<div class="login-overlay">', unsafe_allow_html=True)
-    
-    st.markdown('<h1 class="glow" style="color:#00aaff; margin-bottom:10px;">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 class="subtitle">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
-    st.markdown('<p class="description">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.markdown('<h1 class="glow" style="color:#00aaff;">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
+    st.markdown('<h3 style="color:#ffcc00; text-align:center;">IPK NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
+    st.markdown('<p style="text-align:center; color:#ffffff;">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
     authenticator.login(
         location='main',
