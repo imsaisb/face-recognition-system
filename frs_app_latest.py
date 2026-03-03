@@ -239,7 +239,7 @@ st.markdown(f"""
         font-weight: bold !important;
         box-shadow: 0 0 20px rgba(0, 170, 255, 0.6) !important;
     }}
-    h1, h2, h3 {{ color: #000000; text-align: center; }}  /* ← Changed to black as requested */
+    .h1, h2, h3 {{ color: #000000; text-align: center; }}  /* ← Changed to black as requested */
 </style>
 """, unsafe_allow_html=True)
 
@@ -248,7 +248,7 @@ if not st.session_state.get('authentication_status', False):
     st.markdown('<div class="login-box">', unsafe_allow_html=True)
     
     st.markdown('<h1 class="glow-title">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
-    st.markdown('<h3 class="subtitle">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 class="subtitle">IPK NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
     st.markdown('<p class="description">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
     authenticator.login(
