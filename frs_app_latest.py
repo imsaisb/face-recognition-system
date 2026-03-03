@@ -24,9 +24,9 @@ CONFIDENCE = 0.90
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-# Images (relative paths)
+# Images (using your GitHub raw links)
 BACKGROUND_IMAGE = "https://raw.githubusercontent.com/imsaisb/face-recognition-system/main/img/background.jpeg"
-BANNER_IMAGE = "https://raw.githubusercontent.com/imsaisb/face-recognition-system/main/img/logo pdrm.jpg"           # Yellow-red-blue header with logo & title
+BANNER_IMAGE = "https://raw.githubusercontent.com/imsaisb/face-recognition-system/main/img/logo pdrm.jpg"
 
 # Load authenticator config
 with open('config.yaml', encoding='utf-8') as file:
@@ -167,9 +167,9 @@ class FaceProcessor(VideoProcessorBase):
 # ────────────────────────────────────────────────
 # APP
 # ────────────────────────────────────────────────
-st.set_page_config(page_title="FACE RECOGNITION SYSTEM – IPK NEGERI SEMBILAN", layout="wide")
+st.set_page_config(page_title="FACE RECOGNITION SYSTEM – PDRM NEGERI SEMBILAN", layout="wide")
 
-# Background + blue digital overlay
+# Background + dark overlay for readability
 st.markdown(f"""
 <style>
     .stApp {{
@@ -183,100 +183,73 @@ st.markdown(f"""
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0, 0, 0, 0.65);
+        background: rgba(0, 0, 0, 0.60);  /* Medium-dark overlay - adjust 0.60 to make darker/lighter */
         z-index: -1;
     }}
-    .card {{
-        background: rgba(0, 0, 0, 0.7);
+    .login-box {{
+        background: rgba(0, 0, 0, 0.80);  /* Strong dark box for login text */
         border-radius: 20px;
-        padding: 40px;
-        box-shadow: 0 8px 32px rgba(0, 102, 204, 0.7);
+        padding: 40px 30px;
+        margin: 50px auto;
+        max-width: 560px;
         backdrop-filter: blur(12px);
-        border: 2px solid rgba(0, 170, 255, 0.5);
-        margin: 60px auto;
-        max-width: 500px;
+        border: 1px solid rgba(0, 170, 255, 0.35);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        text-align: center;
     }}
-    .glow {{
-        text-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff;
+    .glow-title {{
+        text-shadow: 0 0 18px #00aaff, 0 0 35px #00aaff;
+        margin-bottom: 10px;
     }}
-    .scan-frame {{
-        border: 5px solid #00aaff;
-        border-radius: 50%;
-        width: 340px;
-        height: 340px;
-        margin: 40px auto;
-        position: relative;
-        overflow: hidden;
-        animation: pulse 2.5s infinite;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0, 170, 255, 0.15);
+    .subtitle {{
+        color: #ffcc00;
+        font-weight: bold;
+        margin: 12px 0;
     }}
-    .scan-frame::before {{
-        content: "";
-        position: absolute;
-        top: 50%; left: 50%;
-        width: 120px;
-        height: 120px;
-        background: radial-gradient(circle, #00aaff 0%, transparent 70%);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        animation: scanPulse 4s infinite;
+    .description {{
+        color: #f0f0f0;
+        margin: 20px 0 30px 0;
+        line-height: 1.6;
     }}
-    @keyframes pulse {{
-        0% {{ box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.8); }}
-        70% {{ box-shadow: 0 0 0 40px rgba(0, 170, 255, 0); }}
-        100% {{ box-shadow: 0 0 0 0 rgba(0, 170, 255, 0); }}
+    .pass-result {{
+        background: #004d00;
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        margin: 20px 0;
+        box-shadow: 0 0 20px #00ff00;
     }}
-    @keyframes scanPulse {{
-        0% {{ transform: translate(-50%, -50%) scale(0.6); opacity: 1; }}
-        50% {{ transform: translate(-50%, -50%) scale(1.8); opacity: 0.3; }}
-        100% {{ transform: translate(-50%, -50%) scale(0.6); opacity: 1; }}
+    .not-verified-result {{
+        background: #990000;
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        margin: 20px 0;
+        box-shadow: 0 0 20px #ff0000;
     }}
-    .pass-btn {{ background: linear-gradient(45deg, #00cc00, #00ff00) !important; box-shadow: 0 0 20px #00ff00 !important; }}
-    .not-verified-btn {{ background: linear-gradient(45deg, #cc0000, #ff0000) !important; box-shadow: 0 0 20px #ff0000 !important; }}
-    .stButton>button {{ border: none !important; border-radius: 14px !important; padding: 16px !important; font-size: 1.4em !important; font-weight: bold !important; }}
-    h1, h2, h3 {{ color: #00aaff; text-align: center; }}
+    .stButton>button {{
+        background: linear-gradient(90deg, #0066cc, #0099ff) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 14px 40px !important;
+        font-size: 1.3em !important;
+        font-weight: bold !important;
+        box-shadow: 0 0 20px rgba(0, 170, 255, 0.6) !important;
+    }}
+    h1, h2, h3 {{ color: #000000; text-align: center; }}  /* ← Changed to black as requested */
 </style>
 """, unsafe_allow_html=True)
 
 # ────── LOGIN SCREEN ──────
 if not st.session_state.get('authentication_status', False):
-    st.markdown(f"""
-    <style>
-        .stApp {{
-            background-image: url("{BACKGROUND_IMAGE}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }}
-        .login-box {{
-            background: rgba(0, 0, 0, 0.75);  /* Dark box behind text only */
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px auto;
-            max-width: 550px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 170, 255, 0.4);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-            text-align: center;
-        }}
-        .glow-title {{
-            text-shadow: 0 0 18px #00aaff, 0 0 35px #00aaff;
-        }}
-        .subtitle {{
-            color: #ffcc00;
-            font-weight: bold;
-        }}
-    </style>
-    """, unsafe_allow_html=True)
-
     st.markdown('<div class="login-box">', unsafe_allow_html=True)
-    st.markdown('<h1 class="glow-title" style="color:#00aaff;">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
+    
+    st.markdown('<h1 class="glow-title">FACE RECOGNITION SYSTEM</h1>', unsafe_allow_html=True)
     st.markdown('<h3 class="subtitle">POLIS NEGERI SEMBILAN</h3>', unsafe_allow_html=True)
-    st.markdown('<p style="color:#e0e0e0;">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
+    st.markdown('<p class="description">Pengguna perlu Log In dan masukkan kata laluan untuk menggunakan sistem</p>', unsafe_allow_html=True)
 
     authenticator.login(
         location='main',
@@ -303,10 +276,10 @@ else:
         st.session_state.page = 'main'
 
     if st.session_state.page == 'main':
-        # Banner header (yellow-red-blue with building, logo, title)
+        # Banner header
         st.image(BANNER_IMAGE, width=1200)
 
-        st.markdown(f"<h2 style='text-align:center; color:#00aaff;'>Selamat Datang, {name} ({username})</h2>", unsafe_allow_html=True)
+        st.markdown(f"<h2 style='color:#000000; text-align:center;'>Selamat Datang, {name} ({username})</h2>", unsafe_allow_html=True)
 
         database = load_staff_database()
         if not database:
@@ -332,9 +305,8 @@ else:
 
     elif st.session_state.page == 'scan':
         title = "TIME IN (Masuk)" if st.session_state.action_key == "IN" else "TIME OUT (Keluar)"
-        st.markdown(f"<h2 style='color:#00aaff; text-align:center;'>{title}</h2>", unsafe_allow_html=True)
+        st.markdown(f"<h2 style='color:#000000; text-align:center;'>{title}</h2>", unsafe_allow_html=True)
 
-        # Animated scanning frame (matches your screenshot)
         st.markdown("""
         <div class="scan-frame">
             <h3 style="color:#00aaff;">Sistem Pengimbas Wajah</h3>
@@ -367,7 +339,7 @@ else:
                     else:
                         ts = record_attendance(staff_id, action_key)
                         st.markdown(f"""
-                        <div style="background:#004d00; color:white; padding:20px; border-radius:12px; text-align:center; margin:20px 0; box-shadow: 0 0 20px #00ff00;">
+                        <div class="pass-result">
                             <h2>PASS</h2>
                             <p style="font-size:1.4em;">{title} direkod pada {ts.strftime('%H:%M HRS')}</p>
                         </div>
@@ -377,7 +349,7 @@ else:
                 else:
                     ts = record_attendance(staff_id, action_key)
                     st.markdown(f"""
-                    <div style="background:#004d00; color:white; padding:20px; border-radius:12px; text-align:center; margin:20px 0; box-shadow: 0 0 20px #00ff00;">
+                    <div class="pass-result">
                         <h2>PASS</h2>
                         <p style="font-size:1.4em;">{title} direkod pada {ts.strftime('%H:%M HRS')}</p>
                     </div>
@@ -387,7 +359,7 @@ else:
 
             else:
                 st.markdown("""
-                <div style="background:#990000; color:white; padding:20px; border-radius:12px; text-align:center; margin:20px 0; box-shadow: 0 0 20px #ff0000;">
+                <div class="not-verified-result">
                     <h2>NOT VERIFIED</h2>
                     <p>Wajah tidak dikenali dalam sistem</p>
                 </div>
@@ -401,7 +373,7 @@ else:
             st.rerun()
 
     elif st.session_state.page == 'logs':
-        st.markdown("<h2 style='color:#00aaff; text-align:center;'>Senarai Clock In & Clock Out</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color:#000000; text-align:center;'>Senarai Clock In & Clock Out</h2>", unsafe_allow_html=True)
 
         with engine.connect() as conn:
             df = pd.read_sql("SELECT staff_id, action, timestamp FROM attendance ORDER BY timestamp DESC", conn)
